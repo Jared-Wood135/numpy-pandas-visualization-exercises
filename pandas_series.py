@@ -181,24 +181,21 @@
 # More Practice START
 # =======================================================================================================
 
-# Revisit the exercises from https://gist.github.com/ryanorsinger/f7d7c1dd6a328730c04f3dc5c5c69f3a.
+'''
+Revisit the exercises from https://gist.github.com/ryanorsinger/f7d7c1dd6a328730c04f3dc5c5c69f3a.
 
-# After you complete each set of Series exercises, use any extra time you have to pursue the 
-# challenge below. You can work on these in the same notebook or file as the Series exercises 
-# or create a new practice notebook you can work in a little every day to keep your python and 
-# pandas skills sharp by trying to solve problems in multiple ways. These are not a part of 
-# the Series exercises grade, so don't worry if it takes you days or weeks to meet the challenge.
+After you complete each set of Series exercises, use any extra time you have to pursue the 
+challenge below. You can work on these in the same notebook or file as the Series exercises 
+or create a new practice notebook you can work in a little every day to keep your python and 
+pandas skills sharp by trying to solve problems in multiple ways. These are not a part of 
+the Series exercises grade, so don't worry if it takes you days or weeks to meet the challenge.
 
-# Challenge yourself to be able to...
-#       - solve each using vanilla python.
-
-
-#       - solve each using list comprehensions.
-
-
-#       - solve each by using a pandas Series for the data structure instead of lists and 
-#         using vectorized operations instead of loops and list comprehensions.
-
+Challenge yourself to be able to...
+    - solve each using vanilla python.
+    - solve each using list comprehensions.
+    - solve each by using a pandas Series for the data structure instead of lists and 
+      using vectorized operations instead of loops and list comprehensions.
+'''
 
 # =======================================================================================================
 # More Practice END
