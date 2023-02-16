@@ -2,44 +2,49 @@
 # Exercises Part I (10) START
 # =======================================================================================================
 
+import pandas as pd
 # Use pandas to create a Series named fruits from the following list:
-["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", 
+fruits = pd.Series(["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", 
 "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", 
-"gooseberry", "papaya"]
+"gooseberry", "papaya"])
 
 # Use Series attributes and methods to explore your fruits Series.
 
 # 1. Determine the number of elements in fruits.
-
+print('Length of fruits:\n',fruits.size)
 
 # 2. Output only the index from fruits.
-
+print('Index of fruits:\n',fruits.index)
 
 # 3. Output only the values from fruits.
-
+print('Values of fruits:\n',fruits.values)
 
 # 4. Confirm the data type of the values in fruits.
-
+print('Type of values in fruits:\n',fruits.dtype)
 
 # 5. Output only the first five values from fruits. Output the last three values. 
 #    Output two random values from fruits.
-
+print(
+  'First 5 values:\n',fruits.head(5),
+  '\nLast 3 values:\n',fruits.tail(3),
+  '\nRandom 2 values:\n',fruits.sample(2)
+)
 
 # 6. Run the .describe() on fruits to see what information it returns when called on a 
 #    Series with string values.
-
+fruits.describe()
 
 # 7. Run the code necessary to produce only the unique string values from fruits.
-
+fruits.unique()
 
 # 8. Determine how many times each unique string value occurs in fruits.
-
+fruits.unique().size
 
 # 9. Determine the string value that occurs most frequently in fruits.
-
+fruits.value_counts()
 
 # 10. Determine the string value that occurs least frequently in fruits.
-
+fruits.value_counts()
 
 # =======================================================================================================
 # Exercises Part I (10) END
