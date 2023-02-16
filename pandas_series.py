@@ -108,25 +108,33 @@ fruits[max(fruits.str.count(vowels))]
 # Use pandas to create a Series named letters from the following string. The easiest way 
 # to make this string into a Pandas series is to use list to convert each individual letter 
 # into a single string on a basic Python list.
-'hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'
+letters_list = list('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy')
+letters = pd.Series(letters_list)
 
 # 1. Which letter occurs the most frequently in the letters Series?
-
+letters.value_counts(ascending=False)
 
 # 2. Which letter occurs the Least frequently?
-
+letters.value_counts(ascending=True)
 
 # 3. How many vowels are in the Series?
-
+letters.str.count(vowels).sum()
 
 # 4. How many consonants are in the Series?
-
+vowels2 = ['a', 'e', 'i', 'o', 'u']
+letters[~letters.isin(vowels2)]
 
 # 5. Create a Series that has all of the same letters but uppercased.
-
+letters.str.capitalize()
 
 # 6. Create a bar plot of the frequencies of the 6 most commonly occuring letters.
-
+import matplotlib.pyplot as plt
+top6letters = letters.value_counts().head(6)
+top6letters.plot.bar()
+plt.xlabel('Letter')
+plt.ylabel('Frequency')
+plt.title('6 Most Commonly Occuring Letters')
+plt.show()
 
 # =======================================================================================================
 # Exercises Part III (Set 1 - 6) END
