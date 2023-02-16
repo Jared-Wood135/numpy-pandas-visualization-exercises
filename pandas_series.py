@@ -132,6 +132,7 @@ import matplotlib.pyplot as plt
 top6letters = letters.value_counts().head(6)
 top6letters.plot.bar()
 plt.xlabel('Letter')
+plt.xticks(rotation=0)
 plt.ylabel('Frequency')
 plt.title('6 Most Commonly Occuring Letters')
 plt.show()
@@ -143,35 +144,44 @@ plt.show()
 # =======================================================================================================
 
 # Use pandas to create a Series named numbers from the following list:
-['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '$2,121,418.3', '$1,260,813.3', 
+numbers_list = ['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '$2,121,418.3', '$1,260,813.3', 
 '$87,231.01', '$1,509,175.45', '$4,138,548.00', '$2,848,913.80', '$594,715.39', 
 '$4,789,988.17', '$4,513,644.5', '$3,191,059.97', '$1,758,712.24', '$4,338,283.54', 
 '$4,738,303.38', '$2,791,759.67', '$769,681.94', '$452,650.23']
+numbers = pd.Series(numbers_list)
 
 # 1. What is the data type of the numbers Series?
-
+numbers.dtype
 
 # 2. How many elements are in the number Series?
-
+numbers.describe()
 
 # 3. Perform the necessary manipulations by accessing Series attributes and methods to 
 #    convert the numbers Series to a numeric data type.
-
+test = numbers.str.strip('$')
+test2 = test.str.replace(',', '')
+numbers_float = test2.astype(float)
+numbers_float
 
 # 4. Run the code to discover the maximum value from the Series.
-
+numbers_float.max()
 
 # 5. Run the code to discover the minimum value from the Series.
-
+numbers_float.min()
 
 # 6. What is the range of the values in the Series?
-
+(numbers_float.max() - numbers_float.min())
 
 # 7. Bin the data into 4 equally sized intervals or bins and output how many values fall into each bin.
-
+pd.cut(numbers_float,4).value_counts()
 
 # 8. Plot the binned data in a meaningful way. Be sure to include a title and axis labels.
-
+import matplotlib.pyplot as plt
+numbers_float.value_counts(bins=4).plot.barh(color='thistle', width=1, ec='black')
+plt.title('Net Worth Bins')
+plt.xlabel('Occurances')
+plt.ylabel('US $')
+plt.show()
 
 # ======================================================================================================
 # Exercises Part III (Set 2 - 8) END
