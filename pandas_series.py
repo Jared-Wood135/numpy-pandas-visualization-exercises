@@ -7,6 +7,9 @@ import pandas as pd
 fruits = pd.Series(["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", 
 "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", 
 "gooseberry", "papaya"])
+fruits_list = ["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", 
+"watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", 
+"gooseberry", "papaya"]
 
 # Use Series attributes and methods to explore your fruits Series.
 
@@ -44,7 +47,7 @@ fruits.unique().size
 fruits.value_counts()
 
 # 10. Determine the string value that occurs least frequently in fruits.
-fruits.value_counts()
+fruits.value_counts()[fruits.value_counts() == 1]
 
 # =======================================================================================================
 # Exercises Part I (10) END
@@ -55,31 +58,46 @@ fruits.value_counts()
 # Explore more attributes and methods while you continue to work with the fruits Series.
 
 # 1. Capitalize all the string values in fruits.
-
+fruits.str.capitalize()
 
 # 2. Count the letter "a" in all the string values (use string vectorization).
-
+sum(fruits.apply(lambda x: x.count('a')))
 
 # 3. Output the number of vowels in each and every string value.
-
+vowels = '[aeiouAEIOU]'
+fruits.str.count(vowels)
 
 # 4. Write the code to get the longest string value from fruits.
+maxlen = max(fruits.str.len())
+fruits[maxlen]
 
+max(fruits_list)
 
 # 5. Write the code to get the string values with 5 or more letters in the name.
+fruits[fruits.str.len() == 5]
 
+lenof5 = ([str for str in fruits_list if len(str) == 5])
+lenof5
 
 # 6. Find the fruit(s) containing the letter "o" two or more times.
-
+fruits.str.count('o')
+fruits[fruits.str.count('o') >= 2]
 
 # 7. Write the code to get only the string values containing the substring "berry".
+fruits[fruits.str.contains('berry')]
 
+hasberry = ([str for str in fruits_list if 'berry' in str])
+hasberry
 
 # 8. Write the code to get only the string values containing the substring "apple".
+fruits[fruits.str.contains('apple')]
 
+hasapple = ([str for str in fruits_list if 'apple' in str])
+hasapple
 
 # 9. Which string value contains the most vowels?
-
+fruits.str.count(vowels)
+fruits[max(fruits.str.count(vowels))]
 
 # =======================================================================================================
 # Exercises Part II (9) END
