@@ -72,37 +72,51 @@ df
 # 2. Load the mpg dataset. Read the documentation for the dataset and use it for the following 
 #    questions:
 #   a. How many rows and columns are there?
-
+#      234 Rows
+#      11 Columns
+mpg
+mpg.shape
 
 #   b. What are the data types of each column?
-
+mpg.info()
 
 #   c. Summarize the dataframe with .info and .describe
-
+mpg.info()
+mpg.describe()
 
 #   d. Rename the cty column to city.
-
+mpg.rename(columns = {'cty' : 'city'})
 
 #   e. Rename the hwy column to highway.
-
+mpg.columns
+mpg.rename(columns = {'hwy' : 'highway'})
 
 #   f. Do any cars have better city mileage than highway mileage?
-
+#      Hell naw brah
+mpg
+mpg['citympg > highway'] = mpg['cty'] > mpg['hwy']
+mpg.sort_values(by = 'citympg > highway', ascending = True)
+mpg.sort_values(by = 'citympg > highway', ascending = False)
 
 #   g. Create a column named mileage_difference this column should contain the difference between highway and city mileage for each car.
-
+mpg['mileage_difference'] = mpg['hwy'] - mpg['cty']
+mpg.sort_values(by = 'mileage_difference')
 
 #   h. Which car (or cars) has the highest mileage difference?
-
+mpg.sort_values(by = 'mileage_difference', ascending = False)
 
 #   i. Which compact class car has the lowest highway mileage? The best?
-
+mpg.sort_values(by = 'hwy')
+mpg.sort_values(by = 'hwy', ascending = False)
 
 #   j. Create a column named average_mileage that is the mean of the city and highway mileage.
-
+mpg['average_mileage'] = mpg[['cty', 'hwy']].sum(axis=1) / 2
+mpg['average_mileage'] = mpg['average_mileage'].round(2)
+mpg
 
 #   k. Which dodge car has the best average mileage? The worst?
-
+mpg.sort_values(by = 'average_mileage', ascending = False)
+mpg.sort_values(by = 'average_mileage')
 
 # =======================================================================================================
 # Exercises Set 2 (11) END
