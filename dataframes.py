@@ -109,6 +109,7 @@ mpg.sort_values(by = 'mileage_difference', ascending = False)
 #   i. Which compact class car has the lowest highway mileage? The best?
 mpg.sort_values(by = 'hwy')
 mpg.sort_values(by = 'hwy', ascending = False)
+mpg.groupby('class')['hwy'].mean().sort_values()
 
 #   j. Create a column named average_mileage that is the mean of the city and highway mileage.
 mpg['average_mileage'] = mpg[['cty', 'hwy']].sum(axis=1) / 2
