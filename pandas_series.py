@@ -210,13 +210,13 @@ exam_scores.median()
 import matplotlib.pyplot as plt
 bins = [0,59.9,69.9,79.9,89.9,100]
 labels = ['F','D','C','B','A']
-pd.cut(exam_scores,bins=bins,labels=labels).value_counts()
-exam_scores.value_counts(bins=bins).plot.barh(color='thistle', width=1, ec='black')
+gradebybins = pd.cut(exam_scores,bins=bins,labels=labels).value_counts()
+gradebybins
+gradebybins.plot.barh(color='thistle', width=1, ec='black')
 plt.title("Frequency of Grades")
 plt.xlabel("Occurance")
 plt.xticks(rotation=0)
 plt.ylabel("Grade")
-plt.yticks(labels=labels)
 plt.show()
 
 # 4. Write the code necessary to implement a curve for your exam_grades Series and save this 
