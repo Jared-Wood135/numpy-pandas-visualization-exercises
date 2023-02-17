@@ -122,7 +122,7 @@ letters.str.count(vowels).sum()
 
 # 4. How many consonants are in the Series?
 vowels2 = ['a', 'e', 'i', 'o', 'u']
-letters[~letters.isin(vowels2)]
+letters[~letters.isin(vowels2)].size
 
 # 5. Create a Series that has all of the same letters but uppercased.
 letters.str.capitalize()
@@ -222,7 +222,10 @@ plt.show()
 # 4. Write the code necessary to implement a curve for your exam_grades Series and save this 
 #    as curved_grades. Add the necessary points to the highest grade to make it 100, and add 
 #    the same number of points to every other score in the Series as well.
-
+curved_grades = exam_scores + (100 - exam_scores.max())
+letter_grades = pd.cut(curved_grades, bins=[0,69.9,79.9,89.9,100], labels=['F','C','B','A'])
+letter_grades.value_counts().plot.barh(title='Class Grades by Letter').set(xlabel='Number of Students', ylabel='Letter Grade')
+plt.show()
 
 # 5. Use a method to convert each of the numeric values in the curved_grades Series into a 
 #    categorical value of letter grades. For example, 86 should be a 'B' and 95 should be 
