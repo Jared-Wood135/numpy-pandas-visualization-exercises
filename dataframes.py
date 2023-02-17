@@ -110,6 +110,9 @@ mpg.sort_values(by = 'mileage_difference', ascending = False)
 mpg.sort_values(by = 'hwy')
 mpg.sort_values(by = 'hwy', ascending = False)
 mpg.groupby('class')['hwy'].mean().sort_values()
+compacts = mpg[mpg['class'] == 'compact']
+compacts
+compacts[(compacts.hwy == compacts.hwy.min())]
 
 #   j. Create a column named average_mileage that is the mean of the city and highway mileage.
 mpg['average_mileage'] = mpg[['cty', 'hwy']].sum(axis=1) / 2
@@ -119,6 +122,9 @@ mpg
 #   k. Which dodge car has the best average mileage? The worst?
 mpg.sort_values(by = 'average_mileage', ascending = False)
 mpg.sort_values(by = 'average_mileage')
+dodges = mpg[mpg.manufacturer == 'dodge']
+dodges[dodges.average_mileage == dodges.average_mileage.max()]
+dodges[dodges.average_mileage == dodges.average_mileage.min()]
 
 # =======================================================================================================
 # Exercises Set 2 (11) END
@@ -131,6 +137,12 @@ mpg.sort_values(by = 'average_mileage')
 #   a. How many rows and columns are there?
 mammals = data('Mammals')
 mammals
+def show_dimensions(data):
+  n_rows = data.shape[0]
+  n_cols = data.shape[1]
+  print(f"Number of rows: {n_rows}\nNumber of columns: {n_cols}")
+show_dimensions(mammals)
+mammals.shape
 
 #   b. What are the data types?
 #      Float & Bool
@@ -141,19 +153,20 @@ mammals.info()
 mammals.describe()
 
 #   d. What is the the weight of the fastest animal?
+mammals[mammals.speed == mammals.speed.max()]
 mammals.sort_values(by = 'speed', ascending = False).head(1)
 
 #   e. What is the overal percentage of specials?
 mammals.shape  # =====> 107 rows
 mammals.sample(1)
-percent_of_specials = len(mammals[mammals.specials == True]) / 107
-percent_of_specials
+round(len(mammals[mammals.specials == True]) / len(mammals), 2)
+mammals['specials'].value_counts(normalize = True)
 
 #   f. How many animals are hoppers that are above the median speed? What percentage is this?
 mammals.speed.median()
+mammals[([mammals.hoppers == True]) & (mammals.speed > mammals.speed.median())]
 mammals[(mammals.speed > mammals.speed.median()) == True].shape # =====> 53 / 107
-percent_above_median_speed = len(mammals[(mammals.speed > mammals.speed.median())] == True) / len(mammals)
-percent_above_median_speed
+round(len(mammals[(mammals.speed > mammals.speed.median())] == True) / len(mammals), 2)
 
 # =======================================================================================================
 # Exercises Set 3 (6) END
