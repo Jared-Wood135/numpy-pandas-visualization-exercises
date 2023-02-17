@@ -14,7 +14,7 @@ from pydataset import data
 data('mpg', show_doc=True) # view the documentation for the dataset
 mpg = data('mpg') # load the dataset and store it in a variable
 
-# All the datasets loaded from the pydataset library will be pandas dataframes.
+# All the datasets loaded from the pydataset library will be pandas dataframes
 
 # =======================================================================================================
 # INITIAL DATAFRAMES ORIENTATION END
@@ -25,24 +25,43 @@ mpg = data('mpg') # load the dataset and store it in a variable
 # 1. Copy the code from the lesson to create a dataframe full of student grades.
 #   a. Create a column named passing_english that indicates whether each student has a 
 #      passing grade in english.
-
+# vvv INITIAL CODE vvv
+import pandas as pd
+import numpy as np
+from pydataset import data
+np.random.seed(123)
+students = ['Sally', 'Jane', 'Suzie', 'Billy', 'Ada', 'John', 'Thomas', 'Marie', 'Albert', 'Richard', 'Isaac', 'Alan']
+math_grades = np.random.randint(low=60, high=100, size=len(students))
+english_grades = np.random.randint(low=60, high=100, size=len(students))
+reading_grades = np.random.randint(low=60, high=100, size=len(students))
+df_dict = {'name': students,
+                   'math': math_grades,
+                   'english': english_grades,
+                   'reading': reading_grades}
+df = pd.DataFrame(df_dict)
+# vvv CODING vvv
+df['passing_english'] = df.english >= 70
+df
 
 #   b. Sort the english grades by the passing_english column. How are duplicates handled?
-
+df.sort_values('passing_english')
 
 #   c. Sort the english grades first by passing_english and then by student name. All the 
 #      students that are failing english should be first, and within the students that are 
 #      failing english they should be ordered alphabetically. The same should be true for 
 #      the students passing english. (Hint: you can pass a list to the .sort_values method)
-
+df.sort_values(by=['passing_english', 'name'])
 
 #   d. Sort the english grades first by passing_english, and then by the actual english grade, 
 #      similar to how we did in the last step.
-
+df.sort_values(by=['passing_english', 'english'])
 
 #   e. Calculate each students overall grade and add it as a column on the dataframe. The 
 #      overall grade is the average of the math, english, and reading grades.
-
+del df['avg_grade']
+df['avg_grade'] = df[['math', 'english', 'reading']].sum(axis=1) / 3
+df['avg_grade'] = df['avg_grade'].round(2)
+df
 
 # =======================================================================================================
 # Exercises Set 1 (5) END
