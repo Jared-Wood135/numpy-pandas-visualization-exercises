@@ -78,6 +78,7 @@ mpg
 mpg.shape
 
 #   b. What are the data types of each column?
+#      object, float, int, bool
 mpg.info()
 
 #   c. Summarize the dataframe with .info and .describe
@@ -127,22 +128,31 @@ mpg.sort_values(by = 'average_mileage')
 # 3. Load the Mammals dataset. Read the documentation for it, and use the data to answer 
 #    these questions:
 #   a. How many rows and columns are there?
-
+mammals = data('Mammals')
+mammals
 
 #   b. What are the data types?
-
+#      Float & Bool
+mammals.info()
 
 #   c. Summarize the dataframe with .info and .describe
-
+mammals.info()
+mammals.describe()
 
 #   d. What is the the weight of the fastest animal?
-
+mammals.sort_values(by = 'speed', ascending = False).head(1)
 
 #   e. What is the overal percentage of specials?
-
+mammals.shape  # =====> 107 rows
+mammals.sample(1)
+percent_of_specials = len(mammals[mammals.specials == True]) / 107
+percent_of_specials
 
 #   f. How many animals are hoppers that are above the median speed? What percentage is this?
-
+mammals.speed.median()
+mammals[(mammals.speed > mammals.speed.median()) == True].shape # =====> 53 / 107
+percent_above_median_speed = len(mammals[(mammals.speed > mammals.speed.median())] == True) / len(mammals)
+percent_above_median_speed
 
 # =======================================================================================================
 # Exercises Set 3 (6) END
